@@ -34,20 +34,36 @@ public class HelloController {
         }
     }
 
-   @FXML
-    public void Runtime(ActionEvent actionEvent) {
-        load("runtime.fxml");
+    @FXML
+    public void Knapsack(ActionEvent actionEvent) {
+        load("knapsack.fxml");
     }
 
     @FXML
-    public void Example(ActionEvent actionEvent) {
-        load("example.fxml");
+    public void NQueen(ActionEvent actionEvent) {
+        load("nqueen.fxml");
     }
 
     @FXML
-    public void Recursive(ActionEvent actionEvent) {
-        load("recursive.fxml");
+    public void KnightTour(ActionEvent actionEvent) {
+        load("knighttour.fxml");
     }
+
+    @FXML
+    public void RatinaMaze(ActionEvent actionEvent) {
+        load("ratinamaze.fxml");
+    }
+
+    @FXML
+    public void SudokuSolver(ActionEvent actionEvent) {
+        load("sudokusolver.fxml");
+    }
+
+//    @FXML
+//    public void Recursive(ActionEvent actionEvent) {
+//        load("recursive.fxml");
+//    }
+
 
     @FXML
     public void Home(ActionEvent actionEvent) {
@@ -62,7 +78,11 @@ public class HelloController {
 
     @FXML
     public void exampleOnMousePressed(Event event) {
-        this.txtMessage.setText("Loading Example. Please wait!!!");
-
     }
+
+//    @FXML
+//    public void exampleOnMousePressed(Event event) {
+//        this.txtMessage.setText("Loading Example. Please wait!!!");
+//
+//    }
 }
