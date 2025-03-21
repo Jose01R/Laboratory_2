@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="734.0" prefWidth="787.0" style="-fx-background-color: #d1c31c;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NQueenProblemController">
+   <children>
+      <Pane prefHeight="127.0" prefWidth="806.0" style="-fx-background-color: #1c76d1;">
+         <children>
+            <Text fill="#391c16" layoutX="265.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N Queens Problem" textAlignment="CENTER" wrappingWidth="276.333984375">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="71.0" layoutY="138.0" prefHeight="200.0" prefWidth="665.0" style="-fx-background-color: 3fbf34;">
+         <children>
+            <TextArea fx:id="textAreaNQueensProblem" layoutX="4.0" layoutY="14.0" prefHeight="200.0" prefWidth="660.0" />
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" />
+      <BarChart fx:id="barcharNQueensProblem" layoutX="45.0" layoutY="403.0" prefHeight="285.0" prefWidth="715.0" style="-fx-background-color: #1c76d1;" title="Test">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Milisegundos" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>
