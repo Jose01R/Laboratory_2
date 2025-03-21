@@ -11,6 +11,18 @@ import ucr.lab.HelloApplication;
 
 import java.io.IOException;
 
+
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
+import ucr.lab.HelloApplication;
+
+import java.io.IOException;
+
 public class HelloController {
 
     @FXML
@@ -73,7 +85,7 @@ public class HelloController {
 
     @FXML
     public void Exit(ActionEvent actionEvent) {
-       System.exit(0);
+        System.exit(0);
     }
 
     @FXML
