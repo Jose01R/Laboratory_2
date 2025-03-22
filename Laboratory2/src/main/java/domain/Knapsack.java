@@ -36,7 +36,7 @@ public class Knapsack {
         return knapsackList;
     }
 
-    // An optimized version of Bubble Sort
+
     private void bubbleSort(){
         boolean swapped;
         int n = this.list.length;
@@ -53,8 +53,6 @@ public class Knapsack {
                 }
             }
 
-            // If no two elements were
-            // swapped by inner loop, then break
             if (swapped == false)
                 break;
         }
