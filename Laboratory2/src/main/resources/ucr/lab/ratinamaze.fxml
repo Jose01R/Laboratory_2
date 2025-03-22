@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="591.0" prefWidth="514.0" style="-fx-background-color: dbc97e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RatInMazeController">
+   <children>
+      <Pane prefHeight="50.0" prefWidth="511.0" style="-fx-background-color: ff7d33;">
+         <children>
+            <Text layoutX="190.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rat in a maze" wrappingWidth="220.7562255859375">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Text layoutX="31.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the maze:" wrappingWidth="193.89263916015625">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Pane layoutX="202.0" layoutY="71.0" prefHeight="41.0" prefWidth="171.0">
+         <children>
+            <ComboBox fx:id="comboBox" layoutX="3.0" layoutY="-3.0" prefHeight="41.0" prefWidth="169.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="82.0" layoutY="140.0" prefHeight="200.0" prefWidth="361.0">
+         <children>
+            <TableView fx:id="tableViewInitial" prefHeight="200.0" prefWidth="362.0">
+              <columns>
+                <TableColumn fx:id="col1Initial" prefWidth="75.0" text="C1" />
+                <TableColumn fx:id="col2Initial" prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="col3Initial" prefWidth="75.0" text="C3" />
+                  <TableColumn fx:id="col4Initial" prefWidth="75.0" text="C4" />
+                  <TableColumn fx:id="col5Initial" prefWidth="75.0" text="C5" />
+                  <TableColumn fx:id="col6Initial" prefWidth="75.0" text="C6" />
+                  <TableColumn fx:id="col7Initial" prefWidth="75.0" text="C7" />
+                  <TableColumn fx:id="col8Initial" prefWidth="75.0" text="C8" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Pane layoutX="82.0" layoutY="364.0" prefHeight="200.0" prefWidth="361.0">
+         <children>
+            <TableView fx:id="tableViewSolution" prefHeight="200.0" prefWidth="362.0">
+               <columns>
+                  <TableColumn fx:id="col1Solution" prefWidth="75.0" text="C1" />
+                  <TableColumn fx:id="col2Solution" prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="col3Solution" prefWidth="75.0" text="C3" />
+                  <TableColumn fx:id="col4Solution" prefWidth="75.0" text="C4" />
+                  <TableColumn fx:id="col5Solution" prefWidth="75.0" text="C5" />
+                  <TableColumn fx:id="col6Solution" prefWidth="75.0" text="C6" />
+                  <TableColumn fx:id="col7Solution" prefWidth="75.0" text="C7" />
+                  <TableColumn fx:id="col8Solution" prefWidth="75.0" text="C8" />
+               </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
