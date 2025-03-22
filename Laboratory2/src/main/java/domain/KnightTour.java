@@ -10,28 +10,28 @@ package domain;
         public KnightTour() {
         }
 
-        public static boolean isSafe(int[][] tablero, int x, int y) {
+        public static boolean isSafe(int[][] board, int x, int y) {
             //Verificar que cumple los requisitos
-            return x >= 0 && x < 8 && y >= 0 && y < 8 && tablero[x][y] == -1;
+            return x >= 0 && x < 8 && y >= 0 && y < 8 && board[x][y] == -1;
         }
 
-        public int[][] knightTourSolution(int [][]tablero) {
+        public int[][] knightTourInitialization(int [][] board) {
             for(int i = 0; i < 8; ++i) {
                 for(int j = 0; j < 8; ++j) {
-                    tablero[i][j] = -1;//Llena el tablero con -1 para indicar las casillas no visitadas
+                    board[i][j] = -1;//Llena el tablero con -1 para indicar las casillas no visitadas
                 }
             }
 
-            tablero[0][0] = 0;//Marca donde inicia el caballo
+            board[0][0] = 0;//Marca donde inicia el caballo
 
-            if (this.solve(0, 0, 1, tablero)) {
-                return tablero;
+            if (this.solve(0, 0, 1, board)) {
+                return board;
             } else {
                 return null;
             }
         }
 
-        private boolean solve(int x, int y, int moveCount, int[][] tablero) {
+        private boolean solve(int x, int y, int moveCount, int[][] board) {
             if (moveCount == 64) {//Caso base, si moveCount llega a 64, recorrio todas las casillas correctamente
                 return true;
             } else {
@@ -40,14 +40,14 @@ package domain;
                     int nextX = x + this.moveX[i];
                     int nextY = y + this.moveY[i];
                     //Comprobamos que sean seguros, si es asi los marcamos con el moveCount
-                    if (isSafe(tablero, nextX, nextY)) {
-                        tablero[nextX][nextY] = moveCount;
+                    if (isSafe(board, nextX, nextY)) {
+                        board[nextX][nextY] = moveCount;
                         //llamado recursivo con los nuevos movimientos
-                        if (solve(nextX, nextY, moveCount + 1, tablero)) {
+                        if (solve(nextX, nextY, moveCount + 1, board)) {
                             return true;
                         }
 
-                        tablero[nextX][nextY] = -1;//Backtracking
+                        board[nextX][nextY] = -1;//Backtracking
                     }
                 }
 
@@ -55,12 +55,12 @@ package domain;
             }
         }
 
-        public void printSolution(int[][] tablero) {
-            if (tablero == null) System.out.println("Solution doesn't exist");
+        public void printSolution(int[][] board) {
+            if (board == null || board.length != 8) System.out.println("Solution doesn't exist");
 
             for(int i = 0; i < 8; ++i) {
                     for(int j = 0; j < 8; ++j) {
-                        System.out.printf("%2d ", tablero[i][j]);
+                        System.out.printf("%2d ", board[i][j]);
                     }
                     System.out.println();//Salto de linea
                 }

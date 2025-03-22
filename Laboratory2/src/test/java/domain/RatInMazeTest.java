@@ -2,8 +2,6 @@ package domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 
 class RatInMazeTest {
 
@@ -11,17 +9,17 @@ class RatInMazeTest {
     void test(){
         RatInMaze rat = new RatInMaze();
 
-        //VALORES DEBEN SER RANDOM
-        int[][] maze = {
-                {1, 0, 0, 0},
-                {1, 1, 0, 1},
-                {0, 1, 0, 0},
-                {1, 1, 1, 1}
-        };
+        int [][] Maze =new int[4][4];
+        for(int i = 0; i< Maze.length; i++){
+            int valorAleatorio=(int)(Math.random()*2);
+            for(int j = 0; j< Maze.length; j++){
+                Maze[i][j]=valorAleatorio;
+            }
+        }
         System.out.println("\nRat in a maze for 4x4 board");
-        System.out.println(printBoard(maze));
+        System.out.println(printBoard(Maze));
         System.out.println("\nSolution: ");
-        System.out.println(rat.printSolution(maze));
+        System.out.println(rat.printSolution(Maze));
     }
 
     private String printBoard(int[][] maze) {
