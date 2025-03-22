@@ -9,6 +9,5 @@ module ucr.lab {
     exports ucr.lab;
     exports controller;
     opens controller to javafx.fxml;
-    exports domain;
-    opens domain to javafx.fxml;
+
 }

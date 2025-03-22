@@ -41,7 +41,7 @@ public class RatInMazeController {
         col3Solution.setCellValueFactory(data -> data.getValue()[2].cellvalueProperty().asObject());
         col4Solution.setCellValueFactory(data -> data.getValue()[3].cellvalueProperty().asObject());
 
-        configureTableColumns();
+
         updateMazeSize();
         tableViewInitial.setItems(RandomMaze(N));
     }
@@ -56,6 +56,7 @@ public class RatInMazeController {
     }
 
 
+    //Generar una matriz aleatoria
     private ObservableList<CellDataRatInMaze[]> RandomMaze(int size) {
         int[][] maze = new int[size][size];
         for (int i = 0; i < size; i++) {
@@ -79,8 +80,6 @@ public class RatInMazeController {
         return data;
     }
 
-    private void configureTableColumns() {
 
-    }
 }
 
