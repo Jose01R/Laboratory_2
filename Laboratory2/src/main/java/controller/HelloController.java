@@ -40,13 +40,11 @@ public class HelloController {
     }
 
     @FXML
-    public void NQueen(ActionEvent actionEvent) {
-        load("nqueen.fxml");
+    public void NQueen(ActionEvent actionEvent) {load("nqueen.fxml");
     }
 
     @FXML
-    public void KnightTour(ActionEvent actionEvent) {
-        load("knighttour.fxml");
+    public void KnightTour(ActionEvent actionEvent) {load("knighttour.fxml");
     }
 
     @FXML
@@ -59,15 +57,10 @@ public class HelloController {
         load("sudokusolver.fxml");
     }
 
-//    @FXML
-//    public void Recursive(ActionEvent actionEvent) {
-//        load("recursive.fxml");
-//    }
-
 
     @FXML
     public void Home(ActionEvent actionEvent) {
-        this.txtMessage.setText("Laboratory 1");
+        this.txtMessage.setText("Laboratory 2");
         this.bp.setCenter(ap);
     }
 
