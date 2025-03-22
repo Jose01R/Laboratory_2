@@ -20,7 +20,7 @@ public class SolutinPopUpController {
 
     public void setSelectedBoard(String selectedBoard) {
         this.selectedBoard = selectedBoard;
-        solveAndDisplaySolution();  // Llamamos al método para resolver y mostrar la solución
+        solveAndDisplaySolution();  // Llamada al método para resolver y mostrar la solución
     }
 
     public void setSudokuSolver(SudokuSolver sudokuSolver) {
@@ -32,13 +32,13 @@ public class SolutinPopUpController {
         int[][] board = sud.obtenerTableroPredefinido(selectedBoard);
         sud.sudokuSolution(board, 0, 0);  // Resolver el Sudoku
 
-        // Convertir el tablero 2D resuelto en una lista de listas
+        // Convertir el tablero resuelto en una lista
         ObservableList<int[]> solutionData = FXCollections.observableArrayList();
         for (int i = 0; i < 9; i++) {
-            solutionData.add(board[i]);  // Añadir la fila resuelta al ObservableList
+            solutionData.add(board[i]);  // Añadir la fila a la lista
         }
 
-        // Mostrar la solución en el TableView
+        // Mostrar solución en TableView
         solutionBoardTable.setItems(solutionData);
     }
 
@@ -46,7 +46,6 @@ public class SolutinPopUpController {
     public void initialize() {
         this.sud = new SudokuSolver();
 
-        // Configurar el CellValueFactory para cada columna
         column1.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue()[0]).asObject());
         column2.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue()[1]).asObject());
         column3.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue()[2]).asObject());

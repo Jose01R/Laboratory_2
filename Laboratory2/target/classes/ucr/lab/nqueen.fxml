@@ -25,7 +25,7 @@
          </font>
       </Text>
       <ComboBox fx:id="ComboBoxNQueens" layoutX="328.0" layoutY="203.0" onAction="#Select" prefHeight="64.0" prefWidth="150.0" promptText="Solutions" />
-      <TableView fx:id="TableViewNQueens" layoutX="96.0" layoutY="288.0">
+      <TableView fx:id="TableViewNQueens" layoutX="96.0" layoutY="288.0" prefHeight="281.0" prefWidth="614.0">
         <columns>
             <TableColumn fx:id="col1" prefWidth="75.0" text="Col-1" />
             <TableColumn fx:id="col2" prefWidth="76.79998779296875" text="Col-2" />

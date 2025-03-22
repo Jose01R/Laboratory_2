@@ -7,6 +7,8 @@ public class Item {
     private double weight;
     private double valueWeight; // PARA MAXIMIZAR LA GANANCIA
 
+    public Item() {}
+
     public Item(String name, double value, double weight) {
         this.name = name;
         this.value = value;
