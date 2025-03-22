@@ -20,70 +20,82 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class NQueenProblemController {
 
     @FXML
-    private TableView<ObservableList<String>> TableViewNQueens;
-    @FXML
     private ComboBox<String> ComboBoxNQueens;
 
     @FXML
-    public void Select(ActionEvent actionEvent) {
-        String seleccion = ComboBoxNQueens.getSelectionModel().getSelectedItem();
-        if (seleccion != null) {
-            int size;
-            if (seleccion.equals("4x4")) {
-                size = 4;
-            } else {
-                size = 8;
-            }
-            configureTableColumns(size);
+    private TableView<String[]> TableViewNQueens;
 
-            String solucion = seleccion.equals("4x4") ? solucionAleatoria4x4() : solucionAleatoria8x8();
-            TableViewNQueens.getItems().clear();
+    @FXML
+    private TableColumn<String[], String> col1, col2, col3, col4, col5, col6, col7, col8; // Columnas del TableView
 
-            // Dividir la solución en filas
-            String[] filas = solucion.split("\n");
-            for (String fila : filas) {
-                // Dividir cada fila en caracteres individuales
-                String[] valores = fila.split("");
-                ObservableList<String> row = FXCollections.observableArrayList(valores);
-                TableViewNQueens.getItems().add(row);
-            }
-        }
-    }
+    private ObservableList<String[]> solutionsList;
 
     @FXML
     public void initialize() {
-        ObservableList<String> list = FXCollections.observableArrayList("4x4", "8x8");
-        ComboBoxNQueens.setItems(list);
+        // Inicializa el ComboBox con las opciones de 4x4 y 8x8
+        ComboBoxNQueens.getItems().addAll("4x4", "8x8");
+        ComboBoxNQueens.setValue("4x4"); // Establece un valor por defecto
+
+        // Inicializa la lista observable
+        solutionsList = FXCollections.observableArrayList();
+
+        // Configura las columnas del TableView
+        configureTableView();
     }
 
-    private void configureTableColumns(int size) {
-        TableViewNQueens.getColumns().clear();
-        for (int i = 0; i < size; i++) {
-            TableColumn<ObservableList<String>, String> column = new TableColumn<>("Col " + (i + 1));
-            final int columnIndex = i;
+    private void configureTableView() {
+        // Vincula las columnas a los índices del arreglo de Strings
+        col1.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()[0]));
+        col2.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()[1]));
+        col3.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()[2]));
+        col4.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()[3]));
+        col5.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()[4]));
+        col6.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()[5]));
+        col7.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()[6]));
+        col8.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()[7]));
 
-            // Seteamos el valor de la celda con una validación del índice
-            column.setCellValueFactory(data -> {
-                ObservableList<String> row = data.getValue();
-                // Verificamos si el índice es válido para esta fila
-                if (columnIndex >= 0 && columnIndex < row.size()) {
-                    return new SimpleStringProperty(row.get(columnIndex));
-                } else {
-                    return new SimpleStringProperty(""); // Si el índice no es válido, devolvemos un valor vacío
-                }
-            });
+        // Asocia la lista observable al TableView
+        TableViewNQueens.setItems(solutionsList);
+    }
 
-            TableViewNQueens.getColumns().add(column);
+    @FXML
+    private void Select(ActionEvent actionEvent) {
+        String selectedSize = ComboBoxNQueens.getValue();
+
+        if (selectedSize.equals("4x4")) {
+            solucionAleatoria4x4();
+        } else if (selectedSize.equals("8x8")) {
+            solucionAleatoria8x8();
         }
     }
 
-    public String solucionAleatoria4x4() {
+    private void solucionAleatoria4x4() {
         NQueenProblem nQueenProblem = new NQueenProblem(4);
-        return nQueenProblem.encontrarSolucionAleatoria();
+        String solution = nQueenProblem.encontrarSolucionAleatoria();
+
+        String[] solutionArray = convertirSolucionATabla(solution);
+
+        solutionsList.clear();
+        solutionsList.add(solutionArray);
     }
 
-    public String solucionAleatoria8x8() {
+    private void solucionAleatoria8x8() {
         NQueenProblem nQueenProblem = new NQueenProblem(8);
-        return nQueenProblem.encontrarSolucionAleatoria();
+        String solution = nQueenProblem.encontrarSolucionAleatoria();
+
+        String[] solutionArray = convertirSolucionATabla(solution);
+
+        solutionsList.clear();
+        solutionsList.add(solutionArray);
+    }
+
+    private String[] convertirSolucionATabla(String solution) {
+        String[] filas = solution.split("\n");
+
+        for (int i = 0; i < filas.length; i++) {
+            filas[i] = filas[i].trim();
+        }
+
+        return filas;
     }
 }

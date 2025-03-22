@@ -3,10 +3,10 @@ package domain;
 import java.util.Random;
 
 public class NQueenProblem {
-    private int size; // Tamaño del tablero
-    private int[] board; // Arreglo de el tablero
-    private Random random; // Generada números aleatorios
-    private int solutions; // Contador de soluciones
+    private int size;
+    private int[] board;
+    private Random random;
+    private int solutions;
 
 
     public NQueenProblem(int size) {
@@ -21,7 +21,7 @@ public class NQueenProblem {
     }
 
     private boolean esSeguro(int fila, int col) {
-        // Verifica la columna y las diagonales
+        // columna y las diagonales
         for (int i = 0; i < fila; i++) {
             if (board[i] == col || board[i] - i == col - fila || board[i] + i == col + fila) {
                 return false;
@@ -59,61 +59,33 @@ public class NQueenProblem {
         System.out.println();
     }
 
-//    public void encontrarSolucionAleatoria() {
-//        // Inicializa el tablero
-//        for (int i = 0; i < size; i++) {
-//            board[i] = -1; // -1 no hay reina en la fila
-//        }
-//
-//        for (int i = 0; i < size; i++) {
-//            int col;
-//            boolean colocado = false;
-//
-//            // Coloca la reina en una columna aleatoria
-//            for (int intentos = 0; intentos < size; intentos++) {
-//                col = random.nextInt(size); // Genera una columna aleatoria
-//                if (esSeguro(i, col)) { // Asegura de que sea seguro con esSeguro
-//                    board[i] = col; // Coloca la reina
-//                    colocado = true;
-//                }
-//            }
-//
-//            // Si no se puede colocar la reina, reinicia el tablero
-//            if (!colocado) {
-//                encontrarSolucionAleatoria(); // Reinicia el proceso
-//                return;
-//            }
-//        }
-//
-//        imprimirSolucion(); // Imprime la solución
-//    }
-public String encontrarSolucionAleatoria() {
-    StringBuilder resultado = new StringBuilder();
+    public String encontrarSolucionAleatoria() {
+        StringBuilder resultado = new StringBuilder();
 
-    // Inicializa el tablero
-    for (int i = 0; i < size; i++) {
-        board[i] = -1; // -1 indica que no hay reina en la fila
-    }
+        // Inicializa el tablero
+        for (int i = 0; i < size; i++) {
+            board[i] = -1; // -1 indica que no hay reina en la fila
+        }
 
-    for (int i = 0; i < size; i++) {
-        int col;
-        boolean colocado = false;
+        for (int i = 0; i < size; i++) {
+            int col;
+            boolean colocado = false;
 
-        // Intenta colocar la reina en una columna aleatoria
-        for (int intentos = 0; intentos < size; intentos++) {
-            col = random.nextInt(size); // Genera una columna aleatoria
-            if (esSeguro(i, col)) { // Verifica si es seguro
-                board[i] = col; // Coloca la reina
-                colocado = true;
-                break; // Sale del bucle si logra colocarla
+            // Intenta colocar la reina en una columna aleatoria
+            for (int intentos = 0; intentos < size; intentos++) {
+                col = random.nextInt(size); // Genera una columna aleatoria
+                if (esSeguro(i, col)) { // Verifica si es seguro
+                    board[i] = col; // Coloca la reina
+                    colocado = true;
+                    break; // Sale del bucle si logra colocarla
+                }
+            }
+
+            // Si no se pudo colocar la reina, reiniciar
+            if (!colocado) {
+                return encontrarSolucionAleatoria(); // Reinicia el proceso y devuelve la nueva solución
             }
         }
-
-        // Si no se pudo colocar la reina, reiniciar
-        if (!colocado) {
-            return encontrarSolucionAleatoria(); // Reinicia el proceso y devuelve la nueva solución
-        }
-    }
 
     // Construir el resultado en forma de String
     for (int i = 0; i < size; i++) {
