@@ -10,47 +10,57 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.util.Random;
-
 
 public class KnapsackController {
 
     private ObservableList<Item> itemsList = FXCollections.observableArrayList(); // Lista de ítems disponibles
     private ObservableList<Item> solutionList = FXCollections.observableArrayList(); // Lista de ítems en la solución
+
     @FXML
-    private TableView Knap2;
+    private TableView<Item> knap2;
+    @FXML
+    private TableColumn<Item, String> columnName2; // Nueva columna para la solución
+    @FXML
+    private TableColumn<Item, Double> columnValue2; // Nueva columna para la solución
+    @FXML
+    private TableColumn<Item, Double> columnWeight2; // Nueva columna para la solución
+    @FXML
+    private TableColumn<Item, Double> columnValueWeight2;
+
     @FXML
     private ComboBox ComboBoxKnap;
+
     @FXML
-    private TableView Knap1;
+    private TableView<Item> knap1;
+    @FXML
+    private TableColumn<Item, String> columnName;
+    @FXML
+    private TableColumn<Item, Double> columnValue;
+    @FXML
+    private TableColumn<Item, Double> columnWeight;
+    @FXML
+    private TableColumn<Item, Double> columnValueWeight;
+
+
+
 
     @FXML
     public void initialize() {
-        // Configurar las columnas de la tabla de ítems disponibles (Knap1)
-        TableColumn<Item, String> nameColumn = new TableColumn<>("Name");
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        // Configuración columnas para knap1
+        columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        columnValue.setCellValueFactory(new PropertyValueFactory<>("value"));
+        columnWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        columnValueWeight.setCellValueFactory(new PropertyValueFactory<>("valueWeight"));
 
-        TableColumn<Item, Double> valueColumn = new TableColumn<>("Value");
-        valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+        // Configuración columnas para knap2
+        columnName2.setCellValueFactory(new PropertyValueFactory<>("name"));
+        columnValue2.setCellValueFactory(new PropertyValueFactory<>("value"));
+        columnWeight2.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        columnValueWeight2.setCellValueFactory(new PropertyValueFactory<>("valueWeight"));
 
-        TableColumn<Item, Double> weightColumn = new TableColumn<>("Weight");
-        weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
 
-        Knap1.getColumns().addAll(nameColumn, valueColumn, weightColumn);
 
-        // Configurar las columnas de la tabla de solución (Knap2)
-        TableColumn<Item, String> nameColumnSolution = new TableColumn<>("Name");
-        nameColumnSolution.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        TableColumn<Item, Double> valueColumnSolution = new TableColumn<>("Value");
-        valueColumnSolution.setCellValueFactory(new PropertyValueFactory<>("value"));
-
-        TableColumn<Item, Double> weightColumnSolution = new TableColumn<>("Weight");
-        weightColumnSolution.setCellValueFactory(new PropertyValueFactory<>("weight"));
-
-        Knap2.getColumns().addAll(nameColumnSolution, valueColumnSolution, weightColumnSolution);
-
-        // Llenar la lista de ítems disponibles
+        // Add items to the ObservableList
         itemsList.addAll(
                 new Item("Smart TV 65 pulg 4k", 1000, 20),
                 new Item("PS5", 600, 2),
@@ -66,46 +76,61 @@ public class KnapsackController {
                 new Item("iPhone", 800, 0.5)
         );
 
-        Knap1.setItems(itemsList);
-
-        // Llenar el ComboBox con capacidades aleatorias
-//        ComboBoxKnap.getItems().addAll(generateRandomCapacities());
+        // Assign list to TableView
+        knap1.setItems(itemsList);
 
         ObservableList<String> list = FXCollections.observableArrayList("10,21", "22,80","34,78", "40,80","50,39");
         ComboBoxKnap.setItems(list);
+
+        ComboBoxKnap.valueProperty().addListener((observable, oldValue, newValue) -> {
+            // Solo llamar a la función cuando el valor seleccionado no sea nulo
+            if (newValue != null) {
+                System.out.println("Capacidad seleccionada: " + newValue);
+                solveKnapsack(newValue);
+            }
+        });
+
+        //System.out.println("Mostrando solución en knap2...");
+        knap2.setItems(solutionList);
+
+
     }
 
-//    @FXML
-//    public void solveKnapsack() {
-//        Double selectedCapacity = ComboBoxKnap.getValue(); // Usa Double, no double
-//        if (selectedCapacity != null && selectedCapacity > 0) {
-//            // Crear una instancia de Knapsack con la capacidad seleccionada
-//            Knapsack knapsack = new Knapsack(itemsList.toArray(new Item[0]), selectedCapacity);
-//
-//            // Obtener la solución
-//            Item[] solution = knapsack.solve();
-//
-//            // Limpiar la lista de solución y agregar los ítems seleccionados
-//            solutionList.clear();
-//            for (Item item : solution) {
-//                if (item != null) {
-//                    solutionList.add(item);
-//                }
-//            }
-//
-//            // Mostrar la solución en la tabla Knap2
-//            Knap2.setItems(solutionList);
-//        }
-//    }
-//
-//    private Double[] generateRandomCapacities() {
-//        Random random = new Random();
-//        return new Double[]{
-//                10 + random.nextDouble() * 5, // Mochila1: entre 10 y 15
-//                20 + random.nextDouble() * 5, // Mochila2: entre 20 y 25
-//                30 + random.nextDouble() * 5, // Mochila3: entre 30 y 35
-//                40 + random.nextDouble() * 5, // Mochila4: entre 40 y 45
-//                50 + random.nextDouble() * 5  // Mochila5: entre 50 y 55
-//        };
-//    }
+
+    @FXML
+    public void solveKnapsack(Object selectedObject) {
+        // Convertir el valor seleccionado a texto y parsearlo
+        String selectedCapacityText = selectedObject.toString();
+
+        String[] capacityValues = selectedCapacityText.split(",");
+        if (capacityValues.length > 1) {
+            try {
+                double selectedCapacity = Double.parseDouble(capacityValues[1]); // Tomar la segunda parte como capacidad
+
+                // Crear una instancia con la capacidad seleccionada
+                Knapsack knapsack = new Knapsack(itemsList.toArray(new Item[0]), selectedCapacity);
+
+                // Obtener la solución
+                Item[] solution = knapsack.solve();
+
+                // Limpiar la lista de solución y agregar los ítems seleccionados
+                solutionList.clear();
+                for (Item item : solution) {
+                    if (item != null) {
+                        solutionList.add(item);
+                    }
+                }
+
+                // Mostrar la solución en el TableView knap2
+                knap2.setItems(solutionList);
+
+            } catch (NumberFormatException e) {
+                System.out.println("Error: No se pudo convertir la capacidad seleccionada a un número.");
+            }
+        } else {
+            System.out.println("Error: Formato de capacidad inválido.");
+        }
+    }
+
+
 }

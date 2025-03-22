@@ -26,20 +26,6 @@ public class SudokuSolver {
         return result;
     }
 
-    /*
-    public boolean tableroCompleto(int [][] board) {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (board[i][j] == 0) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-     */
-
-
     // ----- METODO VALIDAR REGLAS -----
 
     //VERIFICA LA POSICION EN QUE SE COLOCA EL NUMERO

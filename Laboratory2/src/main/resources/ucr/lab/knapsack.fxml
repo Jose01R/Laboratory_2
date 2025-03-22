@@ -16,7 +16,7 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Text>
-      <Text fill="#391c16" layoutX="211.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Knapsack  Solition" textAlignment="CENTER" wrappingWidth="384.333984375">
+      <Text fill="#391c16" layoutX="211.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Knapsack  Solution" textAlignment="CENTER" wrappingWidth="384.333984375">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -32,20 +32,20 @@
          </font>
       </Text>
       <ComboBox fx:id="ComboBoxKnap" layoutX="413.0" layoutY="373.0" prefWidth="150.0" />
-      <TableView fx:id="Knap1" layoutX="51.0" layoutY="139.0" prefHeight="200.0" prefWidth="723.0">
+      <TableView fx:id="knap1" layoutX="200.0" layoutY="148.0" prefHeight="200.0" prefWidth="406.0">
         <columns>
-            <TableColumn prefWidth="113.60003662109375" text="Name" />
-            <TableColumn prefWidth="79.20001220703125" text="Value" />
-            <TableColumn prefWidth="96.0" text="Weight" />
-            <TableColumn prefWidth="431.9999877929688" />
+            <TableColumn fx:id="columnName" prefWidth="113.60003662109375" text="Name" />
+            <TableColumn fx:id="columnValue" prefWidth="79.20001220703125" text="Value" />
+            <TableColumn fx:id="columnWeight" prefWidth="96.0" text="Weight" />
+            <TableColumn fx:id="columnValueWeight" prefWidth="96.0" text="Value/Weight" />
         </columns>
       </TableView>
-      <TableView fx:id="Knap2" layoutX="41.0" layoutY="470.0" prefHeight="200.0" prefWidth="723.0">
+      <TableView fx:id="knap2" layoutX="200.0" layoutY="470.0" prefHeight="200.0" prefWidth="406.0">
          <columns>
-            <TableColumn prefWidth="113.60003662109375" text="Name" />
-            <TableColumn prefWidth="79.20001220703125" text="Value" />
-            <TableColumn prefWidth="96.0" text="Weight" />
-            <TableColumn prefWidth="431.9999877929688" />
+            <TableColumn fx:id="columnName2" prefWidth="113.60003662109375" text="Name" />
+            <TableColumn fx:id="columnValue2" prefWidth="79.20001220703125" text="Value" />
+            <TableColumn fx:id="columnWeight2" prefWidth="96.0" text="Weight" />
+            <TableColumn fx:id="columnValueWeight2" prefWidth="113.0" text="Value/Weight" />
          </columns>
       </TableView>
    </children>
